@@ -5,7 +5,7 @@
 3. 編輯 Playbook 檔案 {playbook_name}.yml 設定目標要配置的角色  
 4. 執行 ansible-playbook 配置指令：   
 ```$ ansible-playbook --syntax-check --ask-vault-pass playbooks/{playbook_name}.yml```   
-```$ ansible-playbook -K --ask-vault-pass playbooks/{playbook_name}.yml```   
+```$ ansible-playbook -K playbooks/{playbook_name}.yml```   
 
 檢查任務細節：
 ```$ ansible-playbook --list-tasks --list-hosts --ask-vault-pass playbooks/{playbook_name}.yml```   
