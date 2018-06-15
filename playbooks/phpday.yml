@@ -1,0 +1,5 @@
+- hosts: phpday
+  gather_facts: true
+  become: yes
+  roles:
+    - timezone
