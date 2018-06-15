@@ -4,3 +4,4 @@
   roles:
     - timezone
     - tmux
+    - oh-my-zsh

@@ -1,0 +1,10 @@
+---
+# Default theme
+oh_my_zsh_theme: ys
+
+# Default plugins
+oh_my_zsh_plugins:
+  - git
+
+users:
+  - username: ubuntu
