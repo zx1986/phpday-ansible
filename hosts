@@ -1,0 +1,9 @@
+[all:vars]
+# ansible_python_interpreter=/usr/bin/python3
+# ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q -p 22 you@bastion.machine"'
+ansible_connection=ssh
+ansible_port=22
+ansible_user=zx1986
+
+[phpday]
+35.234.5.121
