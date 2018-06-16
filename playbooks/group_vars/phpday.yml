@@ -11,8 +11,23 @@ users:
 
 ######### nginx
 
-nginx_remove_default_vhost: false
-nginx_vhosts: []
+nginx_remove_default_vhost: true
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: "_"
+    root: "/var/www/html/laravel.phpday.tw"
+    index: "index.php index.html index.htm"
+    state: "present"
+    filename: "laravel.phpday.tw.conf"
+    extra_parameters: |
+      location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+      }
 
 
 ######### php
