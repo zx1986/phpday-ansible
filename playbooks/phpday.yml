@@ -1,0 +1,11 @@
+- hosts: phpday
+  gather_facts: true
+  become: yes
+  roles:
+    - timezone
+    - tmux
+    - oh-my-zsh
+    - geerlingguy.nginx
+    - geerlingguy.php
+    - geerlingguy.composer
+    - geerlingguy.mysql
