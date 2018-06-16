@@ -9,3 +9,10 @@
     - geerlingguy.php
     - geerlingguy.composer
     - geerlingguy.mysql
+
+  tasks:
+    - name: Deploy source code from Github
+      git:
+        repo: 'https://github.com/zx1986/phpday-laravel'
+        dest: /var/www/html/phpday.tw
+        version: master
