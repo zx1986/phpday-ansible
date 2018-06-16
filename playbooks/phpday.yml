@@ -8,3 +8,4 @@
     - geerlingguy.nginx
     - geerlingguy.php
     - geerlingguy.composer
+    - geerlingguy.mysql

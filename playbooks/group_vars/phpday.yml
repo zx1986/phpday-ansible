@@ -1,15 +1,15 @@
-######### timezone
+######### Timezone
 
 timezone: Asia/Taipei
 
 
-######## oh-my-zsh
+######## Oh-My-Zsh
 
 users:
   - username: zx1986
 
 
-######### nginx
+######### Nginx
 
 nginx_remove_default_vhost: true
 
@@ -30,7 +30,7 @@ nginx_vhosts:
       }
 
 
-######### php
+######### PHP
 
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true
@@ -63,3 +63,24 @@ php_date_timezone: "Asia/Taipei"
 php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
 php_display_errors: "Off"
 php_display_startup_errors: "Off"
+
+
+######### MySQL
+
+mysql_packages:
+  - mariadb-client
+  - mariadb-server
+  - python-mysqldb
+
+mysql_root_password: root@phpday.tw
+
+mysql_databases:
+  - name: phpday
+    encoding: utf8
+    collation: utf8_general_ci
+
+mysql_users:
+  - name: phpday
+    host: "%"
+    password: user@phpday.tw
+    priv: "phpday.*:ALL"
