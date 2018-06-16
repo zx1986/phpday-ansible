@@ -16,10 +16,10 @@ nginx_remove_default_vhost: true
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "_"
-    root: "/var/www/html/laravel.phpday.tw"
+    root: "/var/www/html/phpday.tw"
     index: "index.php index.html index.htm"
     state: "present"
-    filename: "laravel.phpday.tw.conf"
+    filename: "phpday.tw.conf"
     extra_parameters: |
       location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
