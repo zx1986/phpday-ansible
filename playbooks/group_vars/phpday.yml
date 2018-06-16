@@ -61,6 +61,7 @@ nginx_upstreams: []
 php_enable_webserver: true
 
 # PHP-FPM configuration.
+php_webserver_daemon: "nginx"
 php_enable_php_fpm: true
 php_fpm_listen: "127.0.0.1:9000"
 php_fpm_listen_allowed_clients: "127.0.0.1"
