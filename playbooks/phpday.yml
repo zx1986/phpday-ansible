@@ -31,6 +31,6 @@
         path: "{{ item }}"
         state: directory
         mode: 0777
-      with_item:
+      with_items:
         - '/var/www/html/phpday.tw/bootstrap/cache'
         - '/var/www/html/phpday.tw/storage'
