@@ -16,6 +16,7 @@
         repo: 'https://github.com/zx1986/phpday-laravel'
         dest: /var/www/html/phpday.tw
         version: develop
+      register: deploy_source_code_from_github
 
     - name: Change source code owner.
       file:
@@ -25,6 +26,8 @@
         group: zx1986
         mode: 0755
       become: yes
+      register: change_source_code_owner
+      when: deploy_source_code_from_github
 
     - name: Create and change directory permissions.
       file:
@@ -34,3 +37,13 @@
       with_items:
         - '/var/www/html/phpday.tw/bootstrap/cache'
         - '/var/www/html/phpday.tw/storage'
+      when: change_source_code_owner
+
+    - name: Copy .env file from local to server.
+      copy:
+        src: phpday.production.env
+        dest: /var/www/html/phpday.tw/.env
+        owner: zx1986
+        group: zx1986
+        mode: 0644
+      when: change_source_code_owner
