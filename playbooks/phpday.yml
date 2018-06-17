@@ -6,13 +6,69 @@
     - tmux
     - oh-my-zsh
     - geerlingguy.nginx
+    - geerlingguy.php-versions
     - geerlingguy.php
     - geerlingguy.composer
     - geerlingguy.mysql
 
   tasks:
-    - name: Deploy source code from Github
+    - name: Install base packages.
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - zip
+        - htop
+
+    - name: Deploy source code from Github.
       git:
         repo: 'https://github.com/zx1986/phpday-laravel'
         dest: /var/www/html/phpday.tw
-        version: master
+        version: develop
+      register: deploy_source_code_from_github
+
+    - name: Create and change directory permissions.
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0777
+        recurse: yes
+      with_items:
+        - '/var/www/html/phpday.tw/bootstrap/cache'
+        - '/var/www/html/phpday.tw/storage'
+      when: deploy_source_code_from_github
+
+    - name: Copy .env file from local to server.
+      copy:
+        src: phpday.production.env
+        dest: /var/www/html/phpday.tw/.env
+        mode: 0644
+      when: deploy_source_code_from_github
+
+    - name: Composer update.
+      composer:
+        command: update
+        working_dir: /var/www/html/phpday.tw
+      register: composer_update
+      when: deploy_source_code_from_github
+
+    - name: Artisan down.
+      command: /usr/bin/php artisan down --message="Upgrading Database" --retry=10
+      args:
+        chdir: /var/www/html/phpday.tw
+      register: artisan_down
+      when: composer_update
+
+    - name: Artisan migrate.
+      command: /usr/bin/php artisan migrate
+      args:
+        chdir: /var/www/html/phpday.tw
+      register: artisan_migrate
+      when: artisan_down
+
+    - name: Artisan up.
+      command: /usr/bin/php artisan up
+      args:
+        chdir: /var/www/html/phpday.tw
+      register: artisan_up
+      when: artisan_migrate
