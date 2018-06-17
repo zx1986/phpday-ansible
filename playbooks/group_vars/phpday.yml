@@ -21,6 +21,9 @@ nginx_vhosts:
     state: "present"
     filename: "phpday.tw.conf"
     extra_parameters: |
+      location / {
+        try_files $uri $uri/ /index.php?$query_string;
+      }
       location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass 127.0.0.1:9000;
