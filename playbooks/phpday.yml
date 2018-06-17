@@ -26,6 +26,7 @@
       with_items:
         - '/var/www/html/phpday.tw/bootstrap/cache'
         - '/var/www/html/phpday.tw/storage'
+        - '/var/www/html/phpday.tw/vendor'
       when: deploy_source_code_from_github
 
     - name: Copy .env file from local to server.
@@ -33,4 +34,11 @@
         src: phpday.production.env
         dest: /var/www/html/phpday.tw/.env
         mode: 0644
+      when: deploy_source_code_from_github
+
+    - name: Composer update.
+      composer:
+        command: update
+        working_dir: /var/www/html/phpday.tw
+      register: composer_update
       when: deploy_source_code_from_github
