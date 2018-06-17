@@ -16,7 +16,7 @@ nginx_remove_default_vhost: true
 nginx_vhosts:
   - listen: "80 default_server"
     server_name: "_"
-    root: "/var/www/html/phpday.tw"
+    root: "/var/www/html/phpday.tw/public"
     index: "index.php index.html index.htm"
     state: "present"
     filename: "phpday.tw.conf"
