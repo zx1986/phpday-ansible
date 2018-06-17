@@ -24,10 +24,10 @@
         path: "{{ item }}"
         state: directory
         mode: 0777
+        recurse: yes
       with_items:
         - '/var/www/html/phpday.tw/bootstrap/cache'
         - '/var/www/html/phpday.tw/storage'
-        - '/var/www/html/phpday.tw/vendor'
       when: deploy_source_code_from_github
 
     - name: Copy .env file from local to server.
