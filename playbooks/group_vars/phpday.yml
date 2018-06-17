@@ -35,6 +35,8 @@ nginx_vhosts:
 
 ######### PHP
 
+php_version: '7.2'
+
 # Set this to false if you're not using PHP with Apache/Nginx/etc.
 php_enable_webserver: true
 
@@ -66,6 +68,15 @@ php_date_timezone: "Asia/Taipei"
 php_error_reporting: "E_ALL & ~E_DEPRECATED & ~E_STRICT"
 php_display_errors: "Off"
 php_display_startup_errors: "Off"
+
+php_packages:
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-json
+  - php-fpm
+  - php-mysql
+  - php-redis
 
 
 ######### MySQL

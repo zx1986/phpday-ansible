@@ -6,6 +6,7 @@
     - tmux
     - oh-my-zsh
     - geerlingguy.nginx
+    - geerlingguy.php-versions
     - geerlingguy.php
     - geerlingguy.composer
     - geerlingguy.mysql
