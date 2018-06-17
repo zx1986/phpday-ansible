@@ -91,7 +91,7 @@ mysql_root_password: root@phpday.tw
 mysql_databases:
   - name: phpday
     encoding: utf8
-    collation: utf8_general_ci
+    collation: utf8mb4_general_ci
 
 mysql_users:
   - name: phpday
