@@ -43,3 +43,24 @@
         working_dir: /var/www/html/phpday.tw
       register: composer_update
       when: deploy_source_code_from_github
+
+    - name: Artisan down.
+      command: /usr/bin/php artisan down --message="Upgrading Database" --retry=10
+      args:
+        chdir: /var/www/html/phpday.tw
+      register: artisan_down
+      when: composer_update
+
+    - name: Artisan migrate.
+      command: /usr/bin/php artisan migrate
+      args:
+        chdir: /var/www/html/phpday.tw
+      register: artisan_migrate
+      when: artisan_down
+
+    - name: Artisan up.
+      command: /usr/bin/php artisan up
+      args:
+        chdir: /var/www/html/phpday.tw
+      register: artisan_up
+      when: artisan_migrate
