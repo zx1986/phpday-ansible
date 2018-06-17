@@ -11,8 +11,26 @@
     - geerlingguy.mysql
 
   tasks:
-    - name: Deploy source code from Github
+    - name: Deploy source code from Github.
       git:
         repo: 'https://github.com/zx1986/phpday-laravel'
         dest: /var/www/html/phpday.tw
-        version: master
+        version: develop
+
+    - name: Change source code owner.
+      file:
+        path: "/var/www/html/phpday.tw"
+        state: directory
+        owner: zx1986
+        group: zx1986
+        mode: 0755
+      become: yes
+
+    - name: Create and change directory permissions.
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: 0777
+      with_item:
+        - '/var/www/html/phpday.tw/bootstrap/cache'
+        - '/var/www/html/phpday.tw/storage'
