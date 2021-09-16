@@ -29,6 +29,8 @@ RUN echo "===> Installing sudo to emulate normal OS behavior..."  && \
     mkdir -p /etc/ansible                        && \
     echo 'localhost' > /etc/ansible/hosts
 
+RUN mkdir -p /app
+COPY . /app
 
 # default command: display Ansible version
 CMD [ "ansible", "--version" ]
